@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Node 관계 다루기</title>
+  <style>
+    button{
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>각 버튼을 클릭해보세요</h1>
+  <p id="first_title">container</p>
+  <div id="container" style="border: 5px solid black; height: 100px;">
+    <button class="btn"> 1번 </button>
+    <button class="btn"> 2번 </button>
+    <button class="btn"> 3번 </button>
+  </div>
+  <p id="second_title">targetContainer</p>
+  <div id="targetContainer" style="border: 1px solid black; height: 100px;"></div>
+  <script type="text/javascript">
+    const btns = document.querySelectorAll("#container > .btn");
+    console.log(btns);
+    // p태그 생성
+    const p_tag = document.createElement("p");
+
+    for(let item of btns){
+      item.addEventListener("click", (e)=>{
+        console.log(e.target.parentNode);
+        // 클릭한 버튼의 부모 태그를 targetParent에 저장
+        let targetParent = e.target.parentNode;
+
+        // 현재 버튼의 부모 태그를 판별
+        if(targetParent.id == "container"){
+          let target = document.getElementById("targetContainer");
+          // 클릭한 버튼을 targetContainer에 삽입
+          // 부모노드.appendChild(삽입할 노드);
+          // 부모노드 => targetContainer, 삽입할 노드 => 클릭한 버튼(e.target)
+          target.appendChild(e.target);
+          // 모든 버튼이 이동했는지 판별          
+          // (1)container에 버튼 갯수가 0개
+
+          // (2)targetContainer에 버튼 갯수가 3개
+          // console.log(target.children.length == btns.length);
+          if(target.children.length == btns.length){
+            //<p>모든 버튼 이동 완료</p>
+            //(1)createTextNode
+            //(2)textContent, innerText, innerHTML
+            p_tag.textContent = "모든 버튼 이동 완료";
+            console.log(p_tag); 
+            //(3)append
+
+            //targetParent의 이전 형제 => first_title
+            console.log(targetParent.previousElementSibling);
+            let container_title = targetParent.previousElementSibling;
+            
+            //first_tite에 생성한 p태그를 삽입
+            container_title.appendChild(p_tag);
+          }
+        }else{
+          
+
+        }        
+      });
+    }
+
+
+   
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>이벤트 다루기2</title>
+</head>
+	<button id=btn>내용 바꾸기</button>
+	<div id="content" style="border: 1px solid black; height: 100px;">
+		<p>오늘은 자바스크립트 방과후 수업이 있는 날 입니다.</p>
+	</div>
+	<script>
+		const btn = document.getElementById('btn')
+		const text = document.getElementById('content')
+
+
+		btn.addEventListener('click',()=>{
+			let oldum = text.innerHTML;
+			let um = prompt(`입력하고 싶은 내용` , oldum);	
+			text.innerHTML = um
+		})
+
+		
+
+	</script>
+</body>
+
+</html>

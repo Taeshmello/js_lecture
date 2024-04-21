@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습해보기</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 20px;
+    }
+
+    .contents {
+      margin: 20px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 20px 0;
+    }
+
+    .btn_wrap {
+      display: flex;
+      gap: 30px;
+    }
+
+    .btn_wrap>input {
+      padding: 5px 30px;
+    }
+
+    .input_wrap>div>input {
+      padding: 3px 50px;
+    }
+
+
+    .choice {
+      display: block;
+      margin: 30px 0;
+    }
+
+    .resultBtn{
+      padding: 5px 30px;
+    }
+
+    .result {
+      margin: 50px 0;
+      line-height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>HTML 태그의 동적 추가</h1>
+  <div class="contents">
+    <p class="title">생성할 태그를 선택하세요.</p>
+    <div class="btn_wrap">
+      <input type="button" class="btn" value="h1"></input>
+      <input type="button" class="btn" value="h2"></input>
+      <input type="button" class="btn" value="h3"></input>
+    </div>
+    <div class="choice">선택 버튼:</div>
+    <div class="input_wrap">
+      <p class="title">생성할 텍스트를 입력하세요.</p>
+      생성할 텍스트 입력: <input type="text" class="input_text"></input>
+      <button class="submit" id="submitBtn">입력완료</button>
+    </div>
+    <div class="choice">입력한 문자열: </div>
+
+    <button class="resultBtn" id="resultSubmit">HTML 태그 생성하기</button>
+
+    <div class="result">
+      생성결과
+    </div>
+  </div>
+  <script>
+
+    const h_btns = document.querySelectorAll(".btn");
+    const textData = document.getElementById("input_text")
+    const textDataBtn = document.querySelector(".submit")
+
+    for(let i=0; i<h_btns.length; i++){
+      h_btns[i].addEventListener("click",()=>{
+        switch(i){
+          case 0:
+            console.log('엄준식')
+            break;
+        }
+      })
+    }
+
+
+   
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", "sans-serif";
+}
+
+
+
+body{
+    background: black;
+}
+
+
+
+
+section{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+.reval{
+    position: relative;
+    transform: translateY(150px);
+    transition: all 2s ease;
+}
+
+
+.reval_active{
+translate: (0,1);
+opacity: 1;
+}
+
+
+
+
+h1 {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    background-color: black;
+    color: white;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; 
+}
+
+h2 {
+    position: absolute; 
+    top: 0; 
+    margin-top: 5%;
+    font-size: 50px;
+    text-decoration: underline;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the cards vertically */
+    text-align: center;
+    height: 530px;
+    max-width: 80%; /* Adjust the maximum width of the cards container */
+    flex-wrap: wrap;
+}
+
+.text-card {
+    background-color: cadetblue;
+    flex-direction: column;
+    margin: 40px;
+    height: 400px; /* Adjust the height of each card */
+    width: 250px; /* Adjust the width of each card */
+}
+
+
+
+h3{
+    font-size: 30px;
+    margin: 20px;
+
+}
+
+p{
+    font-size: 25px;
+}
+
+
+section:nth-child(odd){
+    background-color: black;
+    color: white;
+}
+
+
+
+

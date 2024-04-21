@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex01.HTML태그 동적 생성</title>
+  <style>
+    ul {
+      list-style: decimal;
+    }
+
+    .student {
+      color: #424242;
+      font-size: 25px;
+      line-height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>출석부</h2>
+  <div class="inputWrap">
+    <input class="inputData" type="text" placeholder="이름을 입력하세요.">
+    <Button class="btn" id="insertBtn">맨 앞에 삽입</Button>
+    <Button class="btn" id="appendBtn">맨 뒤에 삽입</Button>
+  </div>
+  <ul class="studentList">
+    <li class="student">권기범</li>
+    <li class="student">김규빈</li>
+    <li class="student">김미남</li>
+  </ul>
+  <button class="btn" id="clear">모두 삭제</button>
+  <button class="btn" id="back">되돌리기</button>
+  <script>
+
+    const studentList = document.querySelector(".studentList")
+    const inputData = document.querySelector(".inputData")
+    const btns = document.querySelectorAll(".btn")
+    //삭제한 요소들을 담을 배열 변수를 선언
+    const studentRemove = [];
+
+    btns.forEach(item => {
+      item.addEventListener("click", () => {
+        if (item.id === "insertBtn" || item.id === "appendBtn") {
+          // => 조건: input값이 null이면 안됨 =>경고장 출력
+          if (inputData.value == "" || inputData.value == null) {
+            alert("이름을 입력해주세요.")
+          } else {
+            //input에 이름을 입력했을 경우
+            const new_li = document.createElement("li") // <li></li>
+
+            new_li.textContent = inputData.value //input에 입력한 값을 생성한 li태그의 문자열로 지정
+            // 생성한 li태그의 클래스명 student 지정
+            new_li.setAttribute("class", "student")
+            console.log(new_li)
+
+            //생성한 li태그를 insertBtn or appendBtn 따라서 ul 태그에 삽입
+            item.id === "insertBtn" ? studentList.insertBefore(new_li, studentList.firstElementChild) : studentList.appendChild(new_li);
+            inputData.value = "";
+            inputData.focus();
+          }
+        }else{
+          // [...studentList.children].forEach(el => studentList.removeChild(el));
+
+          [...studentList.children].forEach(el=>{
+            studentRemove.push(studentList.removeChild(el))
+          });
+          
+        }
+        
+        });
+    
+    });
+
+
+    document.querySelector("#back").addEventListener("click",()=>{
+      // 삭제를 한 후에만 되돌리기 버튼이 작동 => alert("모든요소를 삭제 후 버튼을 눌러주세요")
+      // 삭제한 요소들 => 반복문을 통해서 ul태그에 추가
+
+      if(studentList.children.length!= 0){
+        alert('모든요소를 삭제 후 버튼을 눌러주세요')
+      }else{
+        // 삭제된 요소들 => 반복문을 통해서 ul태그에 추가
+        studentRemove.forEach(item=>{
+          studentList.appendChild(item);
+          studentRemove =[];
+        })
+      }
+      
+    })
+
+
+    
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

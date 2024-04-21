@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02.position</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .item_wrap{
+      position: relative;
+      width: 650px;
+      height: 1000px;
+      border-radius: 8px;
+      padding: 20px;
+      margin: auto;
+      background-color: #eee;
+      margin-top: 100px;
+    }
+
+    .item_wrap>.item{
+      width: 500px;
+      padding: 30px 10px;
+      background: #004fff;
+      color: #fff;
+      margin: 20px;
+      border-radius: 5px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+
+    .static{
+      position: static;
+      left: 60px;
+    }
+
+    .relative{
+      position: relative;
+      left: 60px;
+    }
+
+    .absolute{
+      position: absolute;
+      left: 60px;
+    }
+
+    .fixed{
+      position: fixed;
+      left: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="item_wrap">
+    <div class="item static">Position - static</div>
+    <div class="item relative">Position - relative</div>
+    <div class="item absolute">Position - absoulte</div>
+    <div class="item fixed">Position - fixed</div>
+  </div>
+</body>
+</html>

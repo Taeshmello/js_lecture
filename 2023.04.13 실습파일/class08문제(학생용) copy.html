@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습해보기4</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+      
+    }
+
+    .buttons{
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .buttons > .btn{
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: black;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+
+    }
+
+    .buttons > .btn:last-child{
+      color: #fff;
+      background-color: #ef8fef;
+    }
+
+    .buttons > .btn:hover{
+      background: #78c7d2;
+      transition: all  .4s ease-in-out;
+    }
+
+    .buttons > .btn:last-child:hover{
+      background-color: red;
+    }
+    
+    .container{
+      display: flex;
+      width: 80vw;
+      margin: 0 auto;
+      /* 메인축(main-axis)-> justify-content*/
+      /* 교차축(cross-axis) -> align=items*/
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      font-size: 50px;
+      border: solid 8px #67e5ee;
+      border-radius: 10px;
+      margin: 30px;
+      transition: all .8s ease;
+    }
+
+    .active{
+      background: #b7b7b7;
+      transform: scale(1.1);
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>classList 연습해보기</h1>
+  <div class="buttons">
+    <input class="btn"  value="Hamurger" onclick="clickBurger()"></input>
+    <input class="btn"  value="Taco" onclick="clickTaco()"></input>
+    <input class="btn" value="Pizza"  onclick="clickPizza()"></input>
+    <input class="btn" value="Reset" onclick="reset()"></input>
+  </div>
+  <div class="container">
+    <div class="box1">
+      <div class="item hamburger">🍔</div>
+      <div class="item taco">🌮</div>
+      <div class="item hamburger">🍔</div>
+      <div class="item pizza">🍕</div>
+    </div>
+    <div class="box2">
+      <div class="item pizza">🍕</div>
+      <div class="item taco">🌮</div>
+      <div class="item taco">🌮</div>
+      <div class="item hamburger">🍔</div>
+    </div>
+    <div class="box3">
+      <div class="item taco">🌮</div>
+      <div class="item pizza">🍕</div>
+      <div class="item hamburger">🍔</div>
+      <div class="item pizza">🍕</div>
+    </div>
+  </div>
+  <script>
+  const hamburger = document.querySelectorAll(".hamburger");
+  const tacos = document.querySelectorAll(".taco");
+  const pizza = document.querySelectorAll(".pizza");
+  const allItems = document.querySelectorAll(".item");
+ 
+
+  const clickBurger = () => {
+    reset();
+    // 햄버거 빼고 모든 태그의 active 클래스를 제거
+    for (let burger of hamburger) {
+      burger.classList.add("active");
+    
+    }
+  }
+  
+  const clickTaco = () => {
+    reset();
+    for (let taco of tacos) {
+      taco.classList.add("active");
+      
+    }
+  }
+  
+const reset = () => {
+  //모든 태그의 active 클래스를 제거
+  for (const item of allItems) {
+    item.classList.remove("active");
+  }
+}
+
+
+  </script>
+</body>
+
+</html>

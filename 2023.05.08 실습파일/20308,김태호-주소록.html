@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            box-sizing: border-box;
+        }
+        #dark{
+            background-color: black;
+            color: white;
+            border-radius: 30px;
+            font-size: 25px;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            transition: 0.5s ease;
+        }
+        
+        #dark:active{
+            background-color: white;
+        }
+        .lightbtn{
+            background-color: white;
+            color: black;
+        }
+        
+       body.dark-mode{
+        background-color: black;
+        color: white;
+
+       }
+
+       .send{
+        border-radius: 30px;
+        font-size: 15px;
+        border: 1px solid black;
+        padding: 5px 20px;
+       }
+     
+
+    </style>
+</head>
+
+<body>
+    <h2>주소록 예제</h2>
+    <div class="toogleWrap">
+        <input type="button" value="Dark Mode 🌙" id="dark" class="changeBtn">
+    </div>
+    이름: <input class="data" type="text" name="name" placeholder="예: 홍길동" autofocus ><br>
+    전화번호: <input class="data" type="text" name="tel" placeholder="010-0000-0000" autofocus ><br><br>
+    <input class="send" type=button value="저장">
+    <input class="send" type=button value="리셋">
+    </form>
+    <hr>
+    <h3>주소록 목록</h3>
+    <ul id="addrlist"></ul>
+    <script>
+
+        const list = document.querySelector("#addrlist")
+        
+        document.querySelector('#dark').addEventListener("click", ()=>{
+        document.body.classList.toggle("dark-mode");
+
+        
+        
+        let darkmode = document.querySelector("#dark");
+
+        if(document.body.classList.contains("dark-mode")){
+            darkmode.value = 'light-mode☀️'
+        }else{
+            darkmode.value = 'dark-mode🌙'
+        }
+    })
+
+
+
+    // const changebtn = document.querySelector("#dark")
+
+    // changebtn.addEventListener("click",(e)=>{
+    //     if(e.target.id === "dark-mode"){
+    //         e.target.classList.add("lightbtn");
+    //         e.target.value= "Light-mode ☀️"
+    //         document.body.setAttribute("style","background-color:black; color: white")
+    //         e.target.setAttribute("id", "light")
+    //     } else{
+    //         e.target.classList.remove("lightbtn")
+    //         e.target.setAttribute("id","dark")
+    //         e.target.value = "Dark-mode 🌙"
+    //         document.body.removeAttribute("style")
+    //     }
+    // })
+
+    const btn = document.querySelectorAll('.send');
+
+    
+    for(let i =0; i<btn.length; i++){
+      
+        btn[i].addEventListener("click",()=>{
+        const namae = document.querySelector("[name='name']").value;
+        const tel = document.querySelector("[name='tel']").value;
+
+            switch(i){
+
+                case 0:
+                
+                if(namae === "") alert("이름을 입력해주세요.")
+
+        const listItem = document.createElement('li')
+
+        listItem.textContent = `${namae}, ${tel}`
+
+        list.appendChild(listItem);
+
+        n
+
+                break;
+
+                case 1:
+                    console.log('엄준식')
+
+                    if(tel==="")alert('전화번호를 입력해주세요.')
+
+                list.innerHTML= ' ';
+                break;
+
+
+
+            }
+
+        })
+    }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

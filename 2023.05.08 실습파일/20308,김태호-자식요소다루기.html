@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습해보기6</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 30px 30px;
+      font-weight: 700;
+    }
+
+    .title{
+      font-size: 40px;
+      margin: 10px;
+      font-weight: 700;
+    }
+
+    ul{
+      display: flex;
+      width: 80vw;
+      margin: 0 auto;
+      /* 메인축(main-axis)-> justify-content*/
+      /* 교차축(cross-axis) -> align=items*/
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    li{
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      font-size: 50px;
+      border-radius: 10px;
+      margin: 30px;
+      transition: all .8s ease;
+      border: 2px solid black;
+      
+
+    }
+    
+    container{
+      display: flex;
+    }
+
+    .btnWrap{
+     text-align: center;
+    }
+
+    .btnWrap > .childrenBtn{
+      border-radius: 10px;
+      padding: 5px 20px;
+      background-color: yellow;
+      font-weight: 700;
+    }
+
+    .btnWrap > .childNodesBtn{
+      border-radius: 10px;
+      padding: 5px 20px;
+      background-color: yellow;
+      font-weight: 700;
+    }
+
+    .btnWrap > .reset{
+      border-radius: 10px;
+      padding: 5px 20px;
+      background-color: red;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .activeBlue{
+      background-color: aqua;
+    }
+
+    .activeOrange{
+      background-color: orange;
+    }
+
+    .title{
+      text-align: center;
+    }
+    
+    
+  </style>
+</head>
+
+<body>
+  <h1>자식 노드 다루기</h1>
+  <div class="titleBox">
+    <p class="title">Balls</p>
+    <div class="btnWrap">
+      <input class="childrenBtn" type="button" value="children 버튼">
+      <input class="childNodesBtn" type="button" value="childNodes 버튼">
+      <input class="reset" type="button" value="RESET">
+    </div>
+  </div>
+  <div class="container">
+    <ul class="balls">
+      <li>⚽</li>
+      <li>🥎</li>
+      <li>🏀</li>
+      <li>🏐</li>
+      <li>🎱</li>
+      <li>🎳</li>
+    </ul>
+  </div>
+  <script>
+  const childBtn = document.querySelector(".childrenBtn")
+  const childNodesBtn = document.querySelector(".childNodesBtn")
+  const resetBtn = document.querySelector(".reset")
+  const balls = document.querySelector(".balls");
+
+  childBtn.addEventListener("click", () => {
+    balls.querySelectorAll("li").forEach((li) => {
+      li.classList.remove("activeOrange");
+      li.classList.add("activeBlue");
+    });
+  });
+
+  childNodesBtn.addEventListener("click", () => {
+    balls.childNodes.forEach((li) => {
+      if (li.nodeName.toLowerCase() === "li") {
+        li.classList.remove("activeBlue");
+        li.classList.add("activeOrange");
+      }
+    });
+  });
+
+  resetBtn.addEventListener("click", () => {
+    balls.querySelectorAll("li").forEach((li) => {
+      li.classList.remove("activeBlue", "activeOrange");
+    });
+  });
+   
+
+
+
+
+   
+  </script>
+</body>
+
+</html>

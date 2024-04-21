@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intersection Observer02</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      word-break: keep-all;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #1f242d;
+      text-align: center;
+      padding: 50px 100px;
+      overflow: hidden;
+    }
+
+    section .animate {
+      opacity: 0;
+      transition: 1s;
+    }
+
+    section.show .animate {
+      opacity: 1;
+    }
+
+    section:nth-child(1) .animate {
+      transform: translateY(100px);
+    }
+
+    section:nth-child(1).show .animate {
+      transform: translateY(0);
+    }
+
+    section:nth-child(2) {
+      background: #2855aa;
+    }
+
+    section:nth-child(2) .animate {
+      transform: translateX(100%);
+    }
+
+    section:nth-child(2).show .animate {
+      transform: translateX(0);
+    }
+
+    section:nth-child(3) {
+      background: #5a28aa;
+    }
+
+    section:nth-child(3) .animate {
+      transform: scale(.7);
+    }
+
+    section:nth-child(3).show .animate {
+      transform: scale(1);
+    }
+
+    section:nth-child(4) {
+      background: #727272;
+    }
+
+    section:nth-child(4) .animate {
+      transform: translateX(-150%);
+    }
+
+    section:nth-child(4).show .animate {
+      transform: translateX(0);
+    }
+
+    section:nth-child(5) {
+      background: #ffa34c;
+    }
+
+    section:nth-child(5) .animate {
+      transform: rotate(-90deg);
+    }
+
+    section:nth-child(5).show .animate {
+      transform: rotate(0)
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      color: #3ee4e4;
+    }
+
+    .section-04 {
+      position: relative;
+    }
+
+    .section-04 .content_box {
+      flex-grow: 1;
+    }
+
+    .section-04 .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 50px 0;
+      flex-grow: 9;
+    }
+
+    .img_container{
+      display: flex;
+      min-width: 100vw;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .img_container img {
+      width: 350px;
+      height: 250px;
+      transition: 1s;
+    }
+
+
+
+
+  </style>
+</head>
+
+<body>
+  <section class="section-01">
+    <div class="container">
+      <h1 class="animate">Hi, I'm JunSik</h1>
+      <p class="animate">Animation on Scroll using HTML and Javascript</p>
+    </div>
+ 
+  </section>
+
+  <section class="section-02">
+    <div class="container">
+      <h1 class="animate">This is Second page</h1>
+    <p class="animate">Animation on Scroll using HTML and Javascript</p>
+    </div>
+    
+  </section>
+
+  <section class="section-03">
+    <div class="container">
+       <h1 class="animate">This is Third page</h1>
+    <p class="animate">Animation on Scroll using HTML and Javascript</p>
+    </div>
+   
+  </section>
+
+  <section class="section-04">
+    <div class="content_box">
+      <h1>Photo effect</h1>
+      <p>Animation on Scroll using HTML and Javascript</p>
+    </div>
+    <div class="container">
+       <div class="img_container">
+      <img src="./img/img01.jpg" alt="img01" class="animate">
+      <img src="./img/img02.jpg" alt="img02" class="animate">
+      <img src="./img/img03.jpg" alt="img03" class="animate">
+    </div>
+    </div>
+  </section>
+
+  <section class="section-05">
+    <div class="container">
+      <h1 class="animate">This is the last page</h1>
+      <p class="animate">Animation on Scroll using HTML and Javascript</p>
+    </div>
+  </section>
+  <script>
+
+    const container = document.querySelectorAll(".container")
+
+    const io = new IntersectionObserver((entries , observer)=>{
+      entries.forEach(el=>{
+        if(el.isIntersecting){
+        }else{
+          el.target.parentElement.classList.remove("show")
+        }
+      })
+    });
+
+
+
+
+
+    window.addEventListener("scroll",()=>{
+      container.forEach(el=>{
+        io.observe(el)
+      })
+    });
+
+
+
+
+    window.addEventListener("load",()=>{
+      setTimeout(()=> window.scrollTo(0,0),100)
+    });
+
+  </script>
+  

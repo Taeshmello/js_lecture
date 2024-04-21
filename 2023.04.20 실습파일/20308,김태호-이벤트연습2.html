@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<title>이벤트 연습2</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<link rel="stylesheet"
+		href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+	<style>
+		body {
+			margin: 20px;
+			padding: 20px;
+			line-height: 1;
+			font-family: "Open Sans", sans-serif;
+			font-size: 1em;
+			background-color: #f1f1f1;
+			color: #555;
+		}
+
+		button {
+			padding: 5px 15px;
+			background-color: #ccc;
+			color: #000;
+			border: none;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: all 0.5s;
+		}
+
+		button:hover {
+			background-color: #888;
+		}
+
+		.title {
+			margin: 0;
+			margin-bottom: 35px;
+			padding: 0;
+			font-size: 1.5em;
+			font-weight: 300;
+			color: #555;
+		}
+
+		.container {
+			margin-top: 35px;
+		}
+
+		img[alt=lion] {
+			display: block;
+			margin-top: 50px;
+			width: 240px;
+			height: 240px;
+			transition: all 0.4s;
+		}
+
+    
+	/* keyframe 작성 */
+		/* keyframe: CSS 애니메이션에서 구간을 정하고 각 구간별로 어떤 스타일을 적용시킬지 정하는 문법*/
+		/* 3가지 조건 */
+		/*
+		- animation-name : 사용자가 직접 지정한 이름, @keyframes 가 적용될 애니메이션의 이름
+		- 스테이지 : from -to 로 0~100% 의 구간
+		- CSS 스타일 : 각 스테이지(구간)에 적용시킬 스타일 */
+
+		.lion.moving{
+			/* */
+			animation: moving 4s linear infinite;
+
+		}
+
+		@keyframes moving {
+			/* 스테이지, 스타일 */
+			0%{
+				/* transform: 엘리먼트를 변형 */
+				/* translate => transform:translateX(n) */
+				/* translate(a,b): 요소를 x축으로 a만큼, y축으로 b만큼 이동*/
+				/* - translateX(n): 요소를 X축으로 n만큼 이동*/
+				/* - translateY(n): 요소를 Y축으로 n만큼 이동*/
+				transform: translateX(0);
+			}
+			100%{
+				transform: translateX(1000px);
+			}
+		}
+
+	</style>
+</head>
+
+<body>
+	<h1 class="title">라이언 오른쪽으로 움직여보기</h1>
+	<div class="container">
+		<button id="add">add</button>
+		<button id="remove">remove</button>
+		<img src="img/lion.gif" alt="lion" class="lion">
+	</div>
+	<script>
+	const btns = document.querySelectorAll(".container > button");
+	const lion = document.querySelector(".container > .lion");
+	
+	for(let i =0; i<btns.length; i++){
+		btns[i].addEventListener("click", ()=>{
+	// 		switch(i){
+	// 			case 0:
+	// 				lion.classList.add('moving')
+	// 				break;
+	// 			case 1:
+	// 				lion.classList.remove('moving')
+	// 				break;
+	// 		}
+	i == 0 ? lion.classList.add("moving") : lion.classList.remove("moving")
+		})
+	}
+	
+	console.log(btns)
+	// 2. for of문: keys(), entries()
+	// (1) 버튼의 id값, (2)클릭한 속성(이벤트 객체)의 id값,
+	for (let items of btns) {
+		items.addEventListener("click",(event)=>{
+			//(1) 버튼의 id값
+			//items.id=="add" ? lion.classList.add("moving") : lion.classList.remove("moving")
+			
+			
+	// (2) 클릭한 속성(이벤트 객체)의 id값
+	// 이벤트 객체는 실행되는 함수의 괄호안에 담김 => (event)=>{}
+	// - 이벤트객체.target: 실제로 이벤트를 발생시킨 요소
+	// - 이벤트객체.currentTarget: addEventListner 앞에 기술된 객체(요소)
+	// 요소.addEventsListner("이벤트 종류", (event)=>{});
+
+	console.log(event.target);
+	console.log(event.currentTarget);
+		});
+	}
+
+	const event = (event) =>{
+		console.log(`${event}이벤트 발생`)
+	}
+	event(e);
+	
+
+	</script>
+</body>
+
+</html>

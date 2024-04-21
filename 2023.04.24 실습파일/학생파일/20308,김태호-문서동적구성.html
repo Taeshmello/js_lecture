@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    ul{
+        font-size: 25px;
+        list-style: lower-roman;
+    }
+</style>
+<body>
+    <h1>문서의 동적구성</h1>
+
+    <ul class="fruits_list">
+        <li class="fruit">apple</li>
+        <li class="fruit">banana</li>
+    </ul>
+</body>
+<script>
+    //documnet.createElement("생성할 태그명")
+    //tagAName의 HTML 요소를 생성하여 반환
+
+    //2. documnet.createTextnode("생성할 텍스트")
+    // 텍스트노드를 생성하여 반환
+
+    //3. 부모 노드에 삽입
+    // (1) 부모 노드. appenChild(사입할 노드)
+    //   DOM 객체(삽입할 노드)를 부모의 마지막 자식으로 삽입
+    // (2) 부모 노드. insertBefore(삽입할 노드, 기준 노드)
+    //  DOM 객체(삽입할 노드)를 부모의 자식 개체 중 기준 노드에 삽입
+
+    const ul_tag = document.querySelector(".fruits_list")
+    //ul의 마지막 자시에 grape 텍스트를 가진 li 태그를 추가
+    // 1.li 태그를 생성
+    let new_li1 = document.createElement("li");
+    console.log(new_li1);
+    // =><li></li>
+    //2. grape 텍스트노드를 생성
+    let new_text1 = document.createTextNode("grape");
+    console.log(new_text1)
+    // => grape
+    //3. 생성한 grpae 텍스트 노드(new_tex1)를 생성한 li 태그(new_li1)에 삽입
+    //<li>grpae</li>
+    new_li1.appendChild(new_text1);
+    // 생성한 new_text1을 new_li 태그의 자식을 삽입
+    console.log(new_li1);
+    //4. ul태그(ul_tag )의 마지막 자식으로 생성한 new_li1을 삽입
+    // ul_tag.appendChild(new_li1);
+
+    //(2) 부모노드.insertBefore(new_li1, 기준노드)
+    // (1) 엘리먼트(요소) 기준, (2) 노드 기준
+
+    //1.
+    ul_tag.insertBefore(new_li1, ul_tag.firstChild);
+
+    //2.
+    ul_tag.insertBefore(new_li1, ul_tag.childNodes[ul_tag.length]);
+
+    //5. 생성한 new_li1에 fruit 클래스 추가(지정)
+    //ex1.) (1) 요소. classList.add("클래스명"),
+    //new_li1.classList.add("fruit")
+    //(2).className="클래스명"
+    //new_li1.className = "fruit"
+    //(3).setAttribute("속성명","속성값")
+    new_li1.setAttribute("class","fruit");
+
+    // mango 텍스트 노드를 가진 li태그를 생성 후 ul 태그의 자식 객체 중 맨 위에 삽입
+
+    let new_li2 = document.createElement("li");
+    console.log(new_li2)
+    let new_text2 = document.createTextNode("mango");
+    console.log(new_text2)
+    
+    new_li2.appendChild(new_text2);
+    console.log(new_li2)
+
+//    ul_tag.insertBefore(new_li2, ul_tag.firstChild)
+//    console.log(ul_tag.firstChild)
+//     console.log(ul_tag.firstElementChild)
+
+
+// (2)노드 기준 => ul태그(부모노드)의 첫번째 노드
+console.log(ul_tag.childNodes)
+ul_tag.insertBefore(new_li2, ul_tag.childNodes[0])
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

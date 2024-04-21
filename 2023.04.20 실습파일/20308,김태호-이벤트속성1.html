@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- display 속성-->
+    <!-- 1.none, 2.block, 3.flex, 4.grid
+         5. inline, 6.inline-block, 7.table...-->
+         <!-- => 2.block / 5.inline 사용 -->
+    <div>
+        sample 1 글자를 클릭해보세요.
+        <span>여기</span>를 클릭하는 거에요.
+    </div>
+    <div>
+        sample 2 글자를 클릭해 보세요.
+        <span>여기</span>를 클릭하는거에요
+    </div>
+    <script>
+        const spam = document.querySelectorAll('span');
+
+        for(let i =0; i<spam.length; i++){
+            spam[i].addEventListener("click",(e)=>{
+               console.log(e.target);
+               // e.target => span태그를 의미 = 클릭한 엘리먼트
+               // span태그가 inline이라면 => block
+               // span태그가 block 이라면 => inline
+               if(e.target.style.display ==  "block"){
+                // e.target.style.display = "inline"
+                e.target.setAttribute("style", "display: inline; color: pink;")
+               }else{
+                // span태그가 block이라면 => inline
+                e.target.style.display = "block"
+               }
+            });
+            // 클릭 이벤트 대상 => span => 이벤트 속성
+        }   
+
+        
+    </script>
+</body>
+</html>

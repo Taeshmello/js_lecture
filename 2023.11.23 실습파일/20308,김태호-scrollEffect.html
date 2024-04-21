@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scrollEffect</title>
+    <style>
+      #hero-area {
+        padding: 65px 0px 85px;
+        background-image: url("./img/bg-1.jpg");
+        background-position: center;
+        background-size: cover;
+        height: 30vh;
+        background-attachment: fixed;
+        z-index: -2;
+      }
+
+      #hero-area h1 {
+        font-size: 36px;
+        font-weight: 400;
+        text-shadow: 2px 2px #fff;
+        margin-bottom: 20px;
+        color: #333;
+        float: left;
+        width: 100%;
+      }
+
+      #hero-area p {
+        font-size: 18px;
+        text-align: center;
+        color: #000;
+        text-shadow: -1px 0px #fff, 0px 1px #fff, 1px 0px #fff, 0px -1px #fff;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .home {
+        height: 300px;
+      }
+
+      .about {
+        height: 1200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="home"></section>
+    <section id="hero-area" class="parallax">
+      <div class="container">
+        <h1>Parallax Scrolling</h1>
+        <p>
+          Nunc diam leo, fringilla vulputate elit lobortis, consectetur
+          vestibulum quam. Sed id <br />
+          felis ligula. In euismod libero at magna dapibus, in rutrum velit
+          lacinia. <br />
+          Etiam a mi quis arcu varius condimentum.
+        </p>
+      </div>
+    </section>
+
+    <section class="about"></section>
+    <script>
+
+      const parallax = document.querySelectorAll(".prallax")
+
+
+
+      //offset
+      //client
+      //getBoundingClient
+
+
+
+      window.addEventListener("scroll",()=>{
+        let scrollValue = window.scrollY || document.documentElement.scrollTop || document.documentElement.pageYOffset
+        //for(let i =0; i<parallax.elngth; i++)
+        //parallax[i].style.backgroundPositionY=
+        //(scrollValue-parallax[i].getBoundingClientRect().top) * 0.7 + "px"
+        parallax.forEach((el,idx)=>{
+          // parallax의 top
+          el.style.backgroundPostionY = `(${scrollValue}-${el.getBoundingClientRect().top}) * 0.7px`;
+        })
+      
+        
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection</title>
+    <style>
+        .check{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!--1. 첫번째 ul-->
+    <ul class="fruits">
+        <li class="fruit1">apple</li>
+        <li class="fruit1">banana</li>
+        <li class="fruit1">grape</li>
+    </ul>
+    <!--2. 두번째 ul-->
+    <ul class="fruits">
+        <li class="fruit2">apple</li>
+        <li class="fruit2">banana</li>
+        <li class="fruit2">grape</li>
+    </ul>
+    
+    <script>
+        // DOM 요소 컬렉션
+        // 1. HTMLCollection: 동적 리스트(live)로서 DOM의 변경사항을 실시간으로 반영
+        // getElementsByTagname(), getElementsByClassName()
+
+        // Q1. 첫 번째 ul태그의 li태그 전체의 클래스명을 check로 변경(getElementsByClassName)
+        // 요소명.className = "check";
+        const um = document.getElementsByClassName('fruit1')
+        
+        console.log(um)
+
+        for(let i=0; i<um.length; i++){
+           um[i].className = "check"
+           
+        }
+        console.log(um)
+        
+        // i=0
+        // [li.fruit1, li.fruit1, li.fruit1]6
+        // 0번째 노드인 apple태그의 클래스명이 check로 변경
+        // => um의 첫번째 요소가 HTMLCollection에서 제거
+        // 현재 컬렉션 => [li.fruit1(banana), li.fruit1(grape)] 실시간 변경
+
+        // i=1
+        // [li.fruit1(banana), li.fruit1(grape)]
+        // 1번째 노드인 grape 태그의 클래스명이 check로 변경
+        // => fruit의 두 번째 요소가 HTMLCollection에서 제거
+        // 현재 컬렉션 => [li.fruit1(banana)] 실시간 변경
+
+        // i=2;
+        // 2 < um.length[i] => x
+        // 현재 컬렉션 => [li.fruit1(banana)]
+
+        //HTMLCollection은 항상 현재의 상태를 반영하는데, collection의 기준이 class Name(um)이었고,
+        // 그 요소들의 class Name(um)을 제거하여, 더 이상 해당 collection이라고 할 수 없음
+        // collection의 길이가 작아지게 되어 발생한 문제
+
+        //해결방법
+        // (1) for문 역순 순회
+        // for(let i=um.length-1; i>=0; i--){
+        //     um[i].className = 'check'
+        // }
+        
+        // (2) 배열로 치환(um: 유사배열 => um: 배열)
+        // (2)-1 : Araays.from()
+        // Array.from(um).forEach(item=>{
+        //     item.className ="check"
+        // })
+
+        // (2)-2 : Spread Operater
+        //배열이나 개겣의 속성을 해체하여 그 값을 개별 변수에 담을 수 있게 하는 자바스크립트 표현식(ES6)
+        // - 객체 혹은 배열을 펼칠 수 있음(기존의 것은 건드리지 않고, 새로운 객체를 만들때 사용)
+        console.log([...um]);
+        [...um].forEach(item=>{
+            item.className ="check"
+        })
+
+        // ※ rest 파라미터: 정해지지 않은 수 인수를 배열로 나타날 수 있게 해줌(ES6)
+        // - 객체, 배열, 함수의 매개변ㅁ수에서 사용가으
+
+        const test2 = (...rest)=>{
+            // ...rest => parameter(파라미터,매개변수): 함수를 정의할 때 사용되는 변수
+            console.log(rest)
+        }
+        test2(1,2,3,4)
+            // 1,2,3,4 => arguments(아규먼트, 인수): 실제로 함수가 호출할 떄, 넘기는 변수값
+
+        
+
+
+
+
+        // 2. NodeList: 정적 리스트(Non-live)로 노드 객체의 상태변화를 실시간으로 반영하지 못함.
+        // => querySelectorAll(), getElementsByName()
+
+        // Q1. 두 번째 ul태그의 li태그 전체의 클래스명을 check로 변경(querySelectorAll)
+        // 3. classList
+        const jun = document.querySelectorAll('.fruit2')
+        console.log(jun)
+        // for(let i=0; i<jun.length;i++){
+        //     jun[i].className = "check"
+        // }
+
+        //2. for of
+        // for (const sik of jun) {
+        //     sik.className = "check"
+        // }
+
+        //3. forEach
+
+        jun.forEach(item => {
+            item.classList = "check"
+        });
+        
+    </script>
+</body>
+</html>

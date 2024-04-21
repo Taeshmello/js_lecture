@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML DOM 구조연습2</title>
+</head>
+
+<body>
+  <h2>구구단 출력</h2>
+  <form action="#" name="frm">
+    단 :
+    <select name="sel" id="selDan">
+      <option value="2">2단</option>
+      <option value="3">3단</option>
+      <option value="4">4단</option>
+      <option value="5">5단</option>
+      <option value="6">6단</option>
+      <option value="7">7단</option>
+      <option value="8">8단</option>
+      <option value="9">9단</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;
+    <input type="button" value="삭제" id="del">
+  </form>
+  <br>
+  <table id="myTable">
+    <tbody id="myTbody"></tbody>
+  </table>
+  <script type="text/javascript">
+
+const selDan = document.querySelector('#selDan');
+const myTbody = document.querySelector('#myTbody');
+const delBtn = document.querySelector('#del');
+
+// 삭제 버튼 클릭 시, 구구단 목록 삭제
+delBtn.addEventListener('click', () => {
+  myTbody.innerHTML = '';
+});
+
+// 구구단 출력 함수
+const printTable = (dan) =>{
+  for (let i = 1; i <= 9; i++) {
+    const result = dan * i;
+    const tr = document.createElement('tr');
+    const td1 = document.createElement('td');
+    td1.textContent = `${dan} * ${i} = ${result}`;
+    tr.appendChild(td1);
+   myTbody.appendChild(tr);
+  }
+}
+  
+
+
+// 숫자 선택 시, 구구단 목록 출력
+selDan.addEventListener('change', () => {
+  // 선택된 숫자의 구구단 출력
+  const dan = parseInt(selDan.value);
+  printTable(dan);
+});
+
+
+    
+
+  </script>
+</body>
+</html>

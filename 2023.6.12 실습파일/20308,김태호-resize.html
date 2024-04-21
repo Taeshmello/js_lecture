@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle1{
+            width: 100px;
+            height: 100px;
+            border-radius:50%;
+            background-color: greenyellow;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content:center;
+            margin-left: 20px;
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+
+        .circle2{
+            width: 100px;
+            height: 100px;
+            border-radius:50%;
+            background-color: greenyellow;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content:center;
+            margin-left: 20px;
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+
+        /*media query*/
+        /*min-width*/
+        /*max-width*/
+/* 
+        @media (max-width: 800px) {
+
+            .circle1{
+                display: none;
+            }
+            
+        } */
+
+        /* @media (max-width: 400px) {
+            .circle2{
+                display: none;
+            }
+        } */
+
+        .gone{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <p>Resize이벤트<p>
+    <p>800이하의 해상도에서는 min800 클래스가 없어지고, 400 이하의 해상도에서는 min400 클래스가 없어지도록 JavaScript를 활용한 방식으로 작성해보세요.<p>
+    <div class="circle1"><h4>min 800px</h4></div>
+    <div class="circle2"><h4>min 400px</h4></div>
+</body>
+<script>
+ //윈도우 객체
+
+ // 윈도우 객체(브라우저)의 넓이(툴바, 즐겨찾기 등 제외한 viewport 기준)
+ // => window.innerWidth
+
+ let window_width = window.innerWidth;
+
+
+
+ window.addEventListener("resize",(e)=>{
+    const circle1 = document.querySelector(".circle1")
+    const circle2 = document.querySelector(".circle2")
+
+    const size = e.target.innerWidth;
+
+
+    if(size <= 800){
+        circle1.classList.add("gone")
+    }else if(size >= 800){
+        circle1.classList.remove("gone")
+    }
+
+    if(size <= 400){
+        circle2.classList.add("gone")
+    }else if(size >= 400){
+        circle2.classList.remove("gone")
+    }
+ })
+</script>
+</html>

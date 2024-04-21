@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>add_Element</title>
+</head>
+<body>
+    <p>버튼을 클릭하면 h1 스타일로 텍스트가 출력됩니다.</p>
+    <button>Click</button>
+    <button>이미지 생성</button>
+    <div class="result"></div>
+    <script>
+        
+        const click_btn = document.querySelectorAll('button')
+        const createEl = () =>{
+            let h1_tag = document.createElement('h1')
+        let text = document.createTextNode('엄준식 화이팅')
+        h1_tag.appendChild(text)
+
+        document.body.appendChild(h1_tag)
+        }
+      click_btn[0].addEventListener("click",(createEl))
+
+
+    // 이미지 생성 버튼 클릭 시 div태그(class=result)에 이미지 생성(width:200px, height:100px)
+
+        const createImg = () => {
+        let img_tag = document.createElement("img")
+        img_tag.setAttribute('src','img/apple.png')
+        img_tag.setAttribute('style', "width:200px; height:300px; display:block")
+        console.log(img_tag)
+        document.querySelector(".result").appendChild(img_tag)
+        }
+
+        click_btn[1].addEventListener("click",(createImg));
+
+        // append vs appendChild
+        // append 는 여러개를 삽입 할 수 있다.
+        // appendChild 는 하나만 삽입 할 수 있다.
+    
+    </script>
+</body>
+</html>

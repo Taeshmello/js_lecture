@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <h2>주소록 예제</h2>
+    <div class="toogleWrap">
+        <input type="button" value="Dark Mode 🌙" id="dark" class="changeBtn">
+    </div>
+    이름: <input class="data" type="text" name="name"><br>
+    전화번호: <input class="data" type="text" name="tel"><br><br>
+    <input class="send" type=button value="저장">
+    <input class="send" type=button value="리셋">
+    </form>
+    <hr>
+    <h3>주소록 목록</h3>
+    <ul id="addrlist"></ul>
+    <script>
+
+const darkBtn = document.querySelector('#dark');
+      const dataInputs = document.querySelectorAll('.data');
+      const sendBtn = document.querySelectorAll('.send');
+      const addrList = document.querySelector('#addrlist');
+
+      // 저장 버튼 클릭 시, 주소록 목록 추가
+      sendBtn[0].addEventListener('click', () => {
+        const name = dataInputs[0].value;
+        const tel = dataInputs[1].value;
+        if (name && tel) {
+          const li = document.createElement('li');
+          li.innerHTML = `${name} (${tel}) <button class="delete">삭제</button>`;
+          addrList.appendChild(li);
+          dataInputs[0].value = '';
+          dataInputs[1].value = '';
+        }
+      });
+
+
+
+
+    </script>
+</body>
+
+</html>

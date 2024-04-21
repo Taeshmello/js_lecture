@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML DOM 구조연습3</title>
+
+</head>
+<body>
+	<button>객체 만들기 1</button>
+	<button>객체 만들기 2</button>
+  <script type="text/javascript">
+    const btn = document.querySelectorAll('button')
+    
+    
+    const makebox = () => {
+      let obj = document.createElement('div')
+      // obj.setAttribute('style','background-color: green; width: 100px; height: 100px; border: 1px solid black;');
+
+      const newStyle = document.createAttribute("syle");
+      newStyle.nodeValue = "background-color: #EEE; width: 100px; height: 100px; border: 1px solid;"
+      obj.setAttributeNode(newStyle);
+      document.body.appendChild(obj)
+    }
+    const makebox2 = (e) => {
+      let obj = document.createElement('div')
+      obj.setAttribute('style','background-color: red; width: 100px; height: 100px; border: 1px solid black;')
+      document.body.appendChild(obj)
+    }
+    
+    for(let i =0; i<btn.length; i++){
+      btn[i].addEventListener('click',()=>{
+        switch(i){
+          case 0:
+            makebox();
+            break;
+            case 1:
+            makebox2();
+        }
+      })
+    }
+
+
+
+  </script>
+</body>
+</html>

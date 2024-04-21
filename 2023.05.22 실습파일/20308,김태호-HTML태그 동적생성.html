@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML태그 동적생성 추가, 삭제</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .mainTitle {
+      margin: 20px;
+    }
+
+    .contents {
+      margin: 20px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 20px 0;
+    }
+
+    .btn_wrap {
+      display: flex;
+      gap: 30px;
+    }
+
+    .btn_wrap>input {
+      padding: 5px 30px;
+    }
+
+    .input_wrap>div>input {
+      padding: 3px 50px;
+    }
+
+
+    .choice {
+      display: block;
+      margin: 30px 0;
+    }
+
+    .resultBtn,
+    .clearBtn,
+    .undoBtn {
+      padding: 5px 30px;
+    }
+
+    .resultTitle{
+      margin-top: 30px;
+    }
+
+    
+    .result {
+      margin: 50px 0;
+      line-height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="mainTitle">HTML 태그의 동적 추가</h1>
+  <div class="contents">
+    <p class="title">생성할 태그를 선택하세요.</p>
+    <div class="btn_wrap">
+      <input type="button" class="btn" value="h1"></input>
+      <input type="button" class="btn" value="h2"></input>
+      <input type="button" class="btn" value="h3"></input>
+    </div>
+    <div class="choice">선택 버튼:</div>
+    <div class="input_wrap">
+      <p class="title">생성할 텍스트를 입력하세요.</p>
+      생성할 텍스트 입력: <input type="text" class="input_text"></input>
+      <button class="submit" id="submitBtn">입력완료</button>
+    </div>
+    <div class="choice">입력한 문자열: </div>
+
+    <button class="resultBtn" id="resultSubmit">HTML 태그 생성하기</button>
+    <button class="clearBtn" id="clear_button">생성결과 삭제</button>
+    <button class="undoBtn" id="undo_button">되돌리기</button>
+
+    <p class="resultTitle">생성결과</p>
+    <div class="result"></div>
+  </div>
+  <script>
+    // Q1. 'HTML 태그 생성하기' 버튼 클릭 시 생성결과 태그(div .result)의 자식으로 생성된 요소노드를 자식으로 추가 
+    // 조건: 생성할 태그 버튼과 텍스트를 모두 입력 시
+
+    const body = document.querySelector("body")
+
+    const choice = document.querySelectorAll(".choice")
+
+    const text = document.querySelector(".input_text")
+
+    const btn_wrap = document.querySelectorAll(".btn_wrap")
+
+    const submitBtn = document.querySelector(".submit");
+
+    const result = document.querySelector(".resultBtn")
+
+    const resultText = document.querySelector(".resultTitle")
+
+    const clearBtn = document.querySelector(".clearBtn")
+
+    const backBtn = document.querySelector(".undoBtn")
+
+    let btn_value;
+
+    let text_value;
+
+    let r_text;
+
+    let result_div = document.querySelector(".result");
+
+    let removeEle  = [];
+
+  [...btn_wrap].forEach(el=>{
+    el.addEventListener("click",(e)=>{
+      
+
+      btn_value = document.createElement(e.target.value)
+
+      const selectTag = e.target.parentElement.nextElementSibling;
+      
+      selectTag.textContent = `선택 버튼: ${e.target.value}`
+
+
+
+    })
+  })
+
+  submitBtn.addEventListener("click",(e)=>{
+
+   
+  
+      console.log(text.value)
+    text_value = document.createTextNode(text.value)
+
+    choice[1].appendChild(text_value)
+    
+    
+
+
+  })
+
+  result.addEventListener("click",(e)=>{
+    if(text.value =="" || btn_value == null){
+      alert('생성할 태그와 텍스트를 입력하세요')
+    
+    }else{
+      btn_value.append(text_value)
+      result_div.append(btn_value)
+    }
+
+    
+
+    btn_value.setAttribute("style","line-height: 40px")
+
+  })
+
+  clearBtn.addEventListener("click",()=>{
+    if([...result_div.children] == ""){
+      alert('삭제할 요소가 없습니다.')
+    }
+   [...result_div.children].forEach(el=>{
+  removeEle.push(result_div.removeChild(el))
+  
+   })
+  })
+
+  backBtn.addEventListener("click",(item)=>{
+    if(removeEle == ""||removeEle == null){
+      alert('삭제한 요소가 없습니다.')
+    }else{
+      removeEle.forEach(ele=>{
+      result_div.appendChild(ele);
+    removeEle = [];
+    })
+    }
+   
+    
+  })
+
+
+
+
+
+
+  
+
+
+
+
+    
+
+
+
+
+
+    // Q2. '생성결과 삭제' 버튼 클릭 시 생성결과 태그(div .result)의 현재 하위 자식노드들을 모두 삭제
+    // 그러나 추가된 요소노드가 없을 시 => '현재 삭제할 수 있는 요소가 없습니다.' 경고창 출력
+    
+
+    // Q3. '되돌리기' 버튼 클릭 시 삭제한 생성결과 태그(div .result)의 하위 자식노드들을 모두 복원
+   
+
+    // removeChild()
+    // - 노드를 삭제하는 것이 아니라, 메모리에 해당 노드는 그대로 존재하며, 부모-자식 관계를 끊어 DOM 트리에서 해제
+    // - 최종적으로 관계를 끊은 해당 노드의 참조를 반환
+    // - 반환된 노드 참조를 변수에 담아 다른 DOM 위치에 붙일 수 있음
+  </script>
+</body>
+
+</html>

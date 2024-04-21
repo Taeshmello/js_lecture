@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03-1.perspective</title>
+  <style>
+    .perspective-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .container {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+      margin: 1em;
+      background: #cfcfcf;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container.perspective {
+      perspective: 250px;
+    }
+
+    .square {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      border: 1px solid #000;
+    }
+
+    .options {
+      margin: 1em;
+    }
+
+    label {
+      display: inline-block;
+      padding: 0.5em 1em;
+      border: 1px solid #888;
+      border-radius: 10px;
+    }
+
+    .square.axesX {
+      animation: translateX 1s infinite ease-in-out alternate;
+    }
+
+    .square.axesY {
+      animation: translateY 1s infinite ease-in-out alternate;
+    }
+
+
+    .square.axesZ{
+      animation: translateZ 1s infinite ease-in-out alternate;
+    }
+
+
+    @keyframes translateX {
+      0% {
+        transform: translateX(-50px);
+      }
+
+      100% {
+        transform: translateX(50px);
+      }
+    }
+
+    @keyframes translateY {
+      from {
+        transform: translateY(-50px);
+      }
+
+      to {
+        transform: translateY(50px);
+      }
+    }
+
+
+    @keyframes translateZ{
+      from{
+        transform: translateZ(-50px);
+      }
+      to{
+        transform: translateZ(50px);
+      }
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="perspective-wrapper">
+    <div class="container">
+      <div class="square"></div>
+    </div>
+    <div class="options">
+      <h3>translate을 이용한 이동 transform</h3>
+      <label for="axesX" class="axis axiesx">
+        <input type="radio" name="moveaxis" class="axis-option" id="axesX">X축
+      </label>
+      <label for="axesY" class="axis axiesy">
+        <input type="radio" name="moveaxis" class="axis-option" id="axesY">Y축
+      </label>
+      <label for="axesZ" class="axis axiesz">
+        <input type="radio" name="moveaxis" class="axis-option" id="axesZ">Z축
+      </label>
+      <label for="prespective">
+        <input type="checkbox" id="perspective">
+        perspective 적용
+      </label>
+    </div>
+  </div>
+  <script>
+    const radioBtn = document.querySelectorAll('.axis-option');
+    const square = document.querySelector(".square");
+    const perspectiveBtn = document.getElementById("perspective");
+
+    radioBtn.forEach(function (item) {
+      item.addEventListener("change", () => {
+        const itemId = item.id;
+        const className = square.classList[1];
+
+        if (itemId !== className) {
+          square.classList.remove(className);
+          square.classList.add(itemId);
+        }
+      });
+    });
+
+    perspectiveBtn.addEventListener("change", (e) => {
+      const target = e.target;
+      const parentNode = square.parentNode;
+      if (target.checked === true) {
+        parentNode.classList.add("perspective");
+      } else {
+        parentNode.classList.remove("perspective");
+      }
+    });
+  </script>
+
+</body>
+
+</html>
